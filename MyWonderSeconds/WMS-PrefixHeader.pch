@@ -1,0 +1,49 @@
+//
+//  WMS-PrefixHeader.pch
+//  MyWonderSeconds
+//
+//  Created by 千锋 on 16/1/8.
+//  Copyright © 2016年 千锋. All rights reserved.
+//
+
+#ifndef WMS_PrefixHeader_pch
+#define WMS_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+/**
+ *  第三方库
+ */
+#import <Masonry.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+
+/**
+ *  Categories，类别
+ */
+#import "UIBarButtonItem+Utils.h"
+
+
+
+/**
+ *  尺寸相关，公共属性
+ */
+//屏幕尺寸
+#define kSCREEN_SIZE [UIScreen mainScreen].bounds.size
+//导航栏高度 + 状态栏高度
+#define kTOPSPACE_FROM_NAVI 64
+//状态栏高度
+#define MWS_STATUS_HEIGHT 20
+//toolBar ,tabBar 的高度
+#define kBOTTOMSPACE_TO_BOTTOM 49
+//默认间距
+#define MWS_PADDING_SPACING_NORMAL 10
+
+/** HomePage 使用数据定义*/
+
+
+/** FunctionPage使用数据定义*/
+
+
+
+
+#endif /* WMS_PrefixHeader_pch */
