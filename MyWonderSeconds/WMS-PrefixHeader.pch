@@ -17,10 +17,12 @@
 #import <Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
+
 /**
  *  Categories，类别
  */
 #import "UIBarButtonItem+Utils.h"
+#import "Tools.h"
 
 
 
@@ -37,11 +39,20 @@
 #define kBOTTOMSPACE_TO_BOTTOM 49
 //默认间距
 #define MWS_PADDING_SPACING_NORMAL 10
+#define MWS_REPLACED_STRING @"_MWS_"
 
-/** HomePage 使用数据定义*/
 
+/*
+    应用信息相关
+ */
+#define MWS_DOCUMENT_DIRECTORY NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject
 
-/** FunctionPage使用数据定义*/
+/*
+    HomePage 使用数据定义
+ */
+
+//缩略图获取存入本地完成后 通知标志
+#define MWS_NOTIFICATION_FETCH_THUMBNAILS_DONE @"Notification_fetch_thumbnails_done"
 
 
 

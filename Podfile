@@ -20,3 +20,9 @@ pod 'IQKeyboardManager'
 pod 'Masonry'
 pod 'SDWebImage'
 pod 'AFNetworking','~>2.6.3'
+
+pod 'MLSelectPhoto'
+
+
+
+

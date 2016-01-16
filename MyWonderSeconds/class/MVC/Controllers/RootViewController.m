@@ -10,7 +10,6 @@
 #import "RootViewController.h"
 
 #import "HomeViewController.h"
-
 #import "SettingViewController.h"
 #import <RESideMenu.h>
 
@@ -21,26 +20,17 @@
 @implementation RootViewController
 
 -(void)awakeFromNib{
-    UIStoryboard * mainSB =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard * mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     HomeViewController * homeVC = [mainSB instantiateViewControllerWithIdentifier:@"HomeViewController"];
     SettingViewController * settingVC = [mainSB instantiateViewControllerWithIdentifier:@"SettingViewController"];
     UINavigationController * navi = [[UINavigationController alloc]initWithRootViewController:homeVC];
     self.contentViewController = navi;
     self.leftMenuViewController = settingVC;
-    //self.contentViewScaleValue = 0.5;
-    //self.menuPrefersStatusBarHidden = YES;
+    self.contentViewInPortraitOffsetCenterX = 80;
     
-//    self.parallaxEnabled = NO;
-    //self.parallaxContentMaximumRelativeValue = 100;
-    //self.parallaxContentMinimumRelativeValue = 10;
-//    self.parallaxContentMinimumRelativeValue = 100;
-//    self.contentViewScaleValue = 0.2;
-//    self.parallaxMenuMaximumRelativeValue = 100;
-//    self.parallaxMenuMinimumRelativeValue = 50;
-    
-    self.scaleBackgroundImageView = NO;
-    self.scaleContentView = NO;
-    self.scaleMenuView = NO;
+    //self.scaleBackgroundImageView = NO;
+    //self.scaleContentView = NO;
+    //self.scaleMenuView = NO;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC32F53C1C49E03C00373AFC /* ThumbnailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32F53B1C49E03C00373AFC /* ThumbnailsModel.m */; };
 		BC5CDC811C3F5C59009AC07F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5CDC791C3F5C59009AC07F /* HomeViewController.m */; };
 		BC5CDC821C3F5C59009AC07F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5CDC7B1C3F5C59009AC07F /* RootViewController.m */; };
 		BC5CDC831C3F5C59009AC07F /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5CDC7D1C3F5C59009AC07F /* SettingViewController.m */; };
-		BC5CDC891C3F7A36009AC07F /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5CDC881C3F7A36009AC07F /* MyView.m */; };
 		BC68AFEA1C3F8DA90044E910 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68AFE91C3F8DA90044E910 /* BaseViewController.m */; };
 		BC6FC32E1C3F43E400AD7D26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6FC32D1C3F43E400AD7D26 /* main.m */; };
 		BC6FC3311C3F43E500AD7D26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6FC3301C3F43E500AD7D26 /* AppDelegate.m */; };
@@ -21,6 +21,10 @@
 		BC6FC34A1C3F43F000AD7D26 /* MyWonderSecondsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6FC3491C3F43F000AD7D26 /* MyWonderSecondsTests.m */; };
 		BC6FC3551C3F43F200AD7D26 /* MyWonderSecondsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6FC3541C3F43F200AD7D26 /* MyWonderSecondsUITests.m */; };
 		BC6FC3841C3F44F100AD7D26 /* UIBarButtonItem+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6FC3691C3F44F100AD7D26 /* UIBarButtonItem+Utils.m */; };
+		BCED8C631C479E20000060FB /* VideoItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCED8C621C479E20000060FB /* VideoItemModel.m */; };
+		BCED8C671C47C55C000060FB /* VideoItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCED8C651C47C55C000060FB /* VideoItemCell.m */; };
+		BCED8C681C47C55C000060FB /* VideoItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCED8C661C47C55C000060FB /* VideoItemCell.xib */; };
+		BCED8C6C1C47D139000060FB /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = BCED8C6B1C47D139000060FB /* Tools.m */; };
 		DA3CC218C9F3B8FC8D714917 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C412B302C2BF65F87D7E342 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +49,8 @@
 		32E4D09F3994EC351AAC9C17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8C412B302C2BF65F87D7E342 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2E4866F9466E05C4CCA87D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BC32F53A1C49E03C00373AFC /* ThumbnailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailsModel.h; sourceTree = "<group>"; };
+		BC32F53B1C49E03C00373AFC /* ThumbnailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailsModel.m; sourceTree = "<group>"; };
 		BC5CDC6F1C3F5BAD009AC07F /* WMS-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WMS-PrefixHeader.pch"; sourceTree = "<group>"; };
 		BC5CDC781C3F5C59009AC07F /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		BC5CDC791C3F5C59009AC07F /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
@@ -52,8 +58,6 @@
 		BC5CDC7B1C3F5C59009AC07F /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		BC5CDC7C1C3F5C59009AC07F /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		BC5CDC7D1C3F5C59009AC07F /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		BC5CDC871C3F7A36009AC07F /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
-		BC5CDC881C3F7A36009AC07F /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
 		BC68AFE81C3F8DA90044E910 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = MyWonderSeconds/class/MVC/BaseViewController/Controllers/BaseViewController.h; sourceTree = SOURCE_ROOT; };
 		BC68AFE91C3F8DA90044E910 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = MyWonderSeconds/class/MVC/BaseViewController/Controllers/BaseViewController.m; sourceTree = SOURCE_ROOT; };
 		BC6FC3291C3F43E300AD7D26 /* MyWonderSeconds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWonderSeconds.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +77,13 @@
 		BC6FC3561C3F43F200AD7D26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC6FC3681C3F44F100AD7D26 /* UIBarButtonItem+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Utils.h"; sourceTree = "<group>"; };
 		BC6FC3691C3F44F100AD7D26 /* UIBarButtonItem+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Utils.m"; sourceTree = "<group>"; };
+		BCED8C611C479E20000060FB /* VideoItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoItemModel.h; sourceTree = "<group>"; };
+		BCED8C621C479E20000060FB /* VideoItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoItemModel.m; sourceTree = "<group>"; };
+		BCED8C641C47C55C000060FB /* VideoItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoItemCell.h; sourceTree = "<group>"; };
+		BCED8C651C47C55C000060FB /* VideoItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoItemCell.m; sourceTree = "<group>"; };
+		BCED8C661C47C55C000060FB /* VideoItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoItemCell.xib; sourceTree = "<group>"; };
+		BCED8C6A1C47D139000060FB /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
+		BCED8C6B1C47D139000060FB /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +181,10 @@
 		BC5CDC7E1C3F5C59009AC07F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BCED8C611C479E20000060FB /* VideoItemModel.h */,
+				BCED8C621C479E20000060FB /* VideoItemModel.m */,
+				BC32F53A1C49E03C00373AFC /* ThumbnailsModel.h */,
+				BC32F53B1C49E03C00373AFC /* ThumbnailsModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,8 +192,9 @@
 		BC5CDC7F1C3F5C59009AC07F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BC5CDC871C3F7A36009AC07F /* MyView.h */,
-				BC5CDC881C3F7A36009AC07F /* MyView.m */,
+				BCED8C641C47C55C000060FB /* VideoItemCell.h */,
+				BCED8C651C47C55C000060FB /* VideoItemCell.m */,
+				BCED8C661C47C55C000060FB /* VideoItemCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -248,6 +264,8 @@
 		BC6FC3661C3F44F100AD7D26 /* class */ = {
 			isa = PBXGroup;
 			children = (
+				BCED8C691C47D139000060FB /* Tools */,
+				BCED8C601C4797AF000060FB /* Managers */,
 				BC5CDC701C3F5C59009AC07F /* MVC */,
 				BC6FC3671C3F44F100AD7D26 /* Categories */,
 				BC6FC3831C3F44F100AD7D26 /* Resource */,
@@ -288,6 +306,22 @@
 				BC6FC3301C3F43E500AD7D26 /* AppDelegate.m */,
 			);
 			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		BCED8C601C4797AF000060FB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		BCED8C691C47D139000060FB /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				BCED8C6A1C47D139000060FB /* Tools.h */,
+				BCED8C6B1C47D139000060FB /* Tools.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		CDD8982CED4E429F6F09A0C4 /* Pods */ = {
@@ -408,6 +442,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCED8C681C47C55C000060FB /* VideoItemCell.xib in Resources */,
 				BC6FC33F1C3F43ED00AD7D26 /* LaunchScreen.storyboard in Resources */,
 				BC6FC33C1C3F43EB00AD7D26 /* Assets.xcassets in Resources */,
 				BC6FC3371C3F43E600AD7D26 /* Main.storyboard in Resources */,
@@ -485,12 +520,15 @@
 			files = (
 				BC6FC3841C3F44F100AD7D26 /* UIBarButtonItem+Utils.m in Sources */,
 				BC68AFEA1C3F8DA90044E910 /* BaseViewController.m in Sources */,
+				BCED8C671C47C55C000060FB /* VideoItemCell.m in Sources */,
 				BC5CDC821C3F5C59009AC07F /* RootViewController.m in Sources */,
-				BC5CDC891C3F7A36009AC07F /* MyView.m in Sources */,
+				BC32F53C1C49E03C00373AFC /* ThumbnailsModel.m in Sources */,
 				BC6FC33A1C3F43E700AD7D26 /* MyWonderSeconds.xcdatamodeld in Sources */,
 				BC6FC3311C3F43E500AD7D26 /* AppDelegate.m in Sources */,
 				BC6FC32E1C3F43E400AD7D26 /* main.m in Sources */,
+				BCED8C6C1C47D139000060FB /* Tools.m in Sources */,
 				BC5CDC811C3F5C59009AC07F /* HomeViewController.m in Sources */,
+				BCED8C631C479E20000060FB /* VideoItemModel.m in Sources */,
 				BC5CDC831C3F5C59009AC07F /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
