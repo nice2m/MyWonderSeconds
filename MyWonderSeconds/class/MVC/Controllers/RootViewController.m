@@ -14,16 +14,21 @@
 #import <RESideMenu.h>
 
 @interface RootViewController ()
-
+{
+    HomeViewController * _homeVC;
+}
 @end
 
 @implementation RootViewController
 
 -(void)awakeFromNib{
+    
+    NSLog(@"%s:%@",__func__,[NSString stringWithFormat:@"%@/%@/%@",MWS_DOCUMENT_DIRECTORY,MWS_LOCALDATA_DIRECTORY,MWS_THUMBNAIL_PLIST_FILE_NAME]);
+    
     UIStoryboard * mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    HomeViewController * homeVC = [mainSB instantiateViewControllerWithIdentifier:@"HomeViewController"];
+    _homeVC = [mainSB instantiateViewControllerWithIdentifier:@"HomeViewController"];
     SettingViewController * settingVC = [mainSB instantiateViewControllerWithIdentifier:@"SettingViewController"];
-    UINavigationController * navi = [[UINavigationController alloc]initWithRootViewController:homeVC];
+    UINavigationController * navi = [[UINavigationController alloc]initWithRootViewController:_homeVC];
     self.contentViewController = navi;
     self.leftMenuViewController = settingVC;
     self.contentViewInPortraitOffsetCenterX = 80;
@@ -37,6 +42,9 @@
     // Do any additional setup after loading the view.
     //加载fileManager
     FileManager * fileManager = [FileManager sharedManager];
+    //添加监听通知
+    [Tools observeNotificationWithObserver:self selector:@selector(updateTableView) name:MWS_NOTIFICATION_FETCH_THUMBNAILS_DONE object:nil];
+    //NSLog(@"%s\t%@",__func__,MWS_LOCALDATA_DIRECTORY);
     //是否需要创建Plist 文件
     if ([fileManager shouldCreatePlist]) {
         //不存在，然后，创建plist 文件
@@ -52,6 +60,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - selector
+-(void)updateTableView{
+    NSLog(@"hello world!");
 }
 
 

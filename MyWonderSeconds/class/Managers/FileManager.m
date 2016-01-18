@@ -9,7 +9,6 @@
 #import "FileManager.h"
 
 static FileManager * sharedManager;
-
 @implementation FileManager
 
 +(instancetype)sharedManager{
@@ -32,21 +31,16 @@ static FileManager * sharedManager;
 -(void)updatePlist{
     [Tools generateDataWithPHFetchResult:self.fetchResult];
 }
-
 -(BOOL)shouldUpdatePlist{
     NSDate * latestDateInDict = nil;
-    NSString * plistPath = [MWS_LOCALDATA_DIRECTORY stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",MWS_THUMBNAIL_PLIST_FILE_NAME]];
-    NSLog(@"%s:%@",__func__,plistPath);
+    NSString * plistPath = [MWS_DOCUMENT_DIRECTORY stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",MWS_LOCALDATA_DIRECTORY,MWS_THUMBNAIL_PLIST_FILE_NAME]];
+    //NSLog(@"%s:%@",__func__,plistPath);
     NSDictionary * dict =  [NSDictionary dictionaryWithContentsOfFile:plistPath];
     latestDateInDict = dict[@"latestModifiedDate"];
     for (int i = 0  ; i < self.fetchResult.count; i ++) {
         PHAsset * asset = [self.fetchResult objectAtIndex:i];
-        if (i == 0 ) {
-            latestDateInDict = asset.modificationDate;
-        }
         if ([asset.modificationDate compare:latestDateInDict] == NSOrderedDescending) {
             latestDateInDict = asset.modificationDate;
-            //break;
             return YES;
         }
     }
@@ -54,10 +48,9 @@ static FileManager * sharedManager;
 }
 -(BOOL)shouldCreatePlist{
     NSFileManager * man = [NSFileManager defaultManager];
-    NSString * filePath = [NSString stringWithFormat:@"%@%@",MWS_LOCALDATA_DIRECTORY,MWS_THUMBNAIL_PLIST_FILE_NAME];
-    NSLog(@"filePath:%@",filePath);
+    NSString * filePath = [MWS_DOCUMENT_DIRECTORY stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",MWS_LOCALDATA_DIRECTORY,MWS_THUMBNAIL_PLIST_FILE_NAME]];
+    //NSLog(@"%s\tfilePath:%@",__func__,filePath);
     BOOL _shouldCreate = [man fileExistsAtPath:filePath];
     return !_shouldCreate;
 }
-
 @end

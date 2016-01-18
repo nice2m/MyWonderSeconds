@@ -49,12 +49,10 @@
 #define MWS_DOCUMENT_DIRECTORY NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject
 
 /** ~/Documents/LocalData 目录*/
-#define MWS_LOCALDATA_DIRECTORY [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"/LocalData/"]
+#define MWS_LOCALDATA_DIRECTORY @"LocalData"
+
 /** ~/Document/LocalData/ plist 文件*/
-#define MWS_THUMBNAIL_PLIST_FILE_NAME @"/thumbNailInfo.plist"
-
-
-
+#define MWS_THUMBNAIL_PLIST_FILE_NAME @"thumbNailInfo.plist"
 
 /*
     HomePage 使用数据定义

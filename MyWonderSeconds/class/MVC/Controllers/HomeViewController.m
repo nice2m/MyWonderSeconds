@@ -26,10 +26,10 @@
 /** ==================视图相关*/
 /** 相机背景图层*/
 @property (nonatomic,strong) UIImageView *cameraImageView;
-/** 表格视图*/
-@property(nonatomic,strong)UITableView * tableView;
 /**  视频录制（选择）器*/
 @property(strong,nonatomic) UIImagePickerController * imagePicker;
+/** 表格视图*/
+@property(nonatomic,strong)UITableView * tableView;
 //权限是否可用
 @property(nonatomic,assign)BOOL isAccessAvalabel;
 
@@ -172,7 +172,6 @@ static NSString * reuseID = @"reuseID1";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     //请求权限！
     //[self requestPermission];
     //创建UI
@@ -187,25 +186,20 @@ static NSString * reuseID = @"reuseID1";
 }
 
 #pragma mark - 数据相关
-
 -(void)getDataAndFill{
-    //弱引用
-    __weak typeof(self) weakSelf = self;
-    
-    //根据PHFetchResults 生成缩略图存入本地,缩略图集合plist 文件
-    NSDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",MWS_LOCALDATA_DIRECTORY,MWS_THUMBNAIL_PLIST_FILE_NAME]];
-    NSArray * arr = dict[@"thumbNailsImages"];
-    NSLog(@"arr:%@",arr);
-    
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        [Tools generateDataWithPHFetchResult:weakSelf.fetchResult];
-//        //从本地plist 文件读取模型，创建self.tablveView 的数据
-//        
-//    });
-    //回到主视图刷新UI
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf.tableView reloadData];
-    });
+    //根据plist 文件,生成数据
+    NSString * plistPath = [MWS_DOCUMENT_DIRECTORY stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",MWS_LOCALDATA_DIRECTORY,MWS_THUMBNAIL_PLIST_FILE_NAME]];
+    NSDictionary * dict1 = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    //NSLog(@"filePath:%@",plistPath);
+    //NSLog(@"dict of file:%@",dict1);
+    NSArray * arr = dict1[@"thumbNailsImages"];
+    for (NSDictionary * dict  in arr) {
+        ThumbnailsModel * model = [ThumbnailsModel new];
+        [model setValuesForKeysWithDictionary:dict];
+        [self.videoThumbNails addObject:model];
+    }
+    NSLog(@"dataArr:%@",self.videoThumbNails);
+    [self.tableView reloadData];
 }
 
 #pragma mark - selector
@@ -228,7 +222,6 @@ static NSString * reuseID = @"reuseID1";
 
 //弹出左侧菜单
 -(void)barItemPressed:(UIButton *)sender{
-    
     //显示菜单按钮
     [self.sideMenuViewController presentLeftMenuViewController];
 }
@@ -244,11 +237,11 @@ static NSString * reuseID = @"reuseID1";
 }
 
 /** 刷新数据*/
--(void)thumbNailImagesReady{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
-}
+//-(void)thumbNailImagesReady{
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self.tableView reloadData];
+//    });
+//}
 
 #pragma mark - UITableViewDataSource
 
@@ -302,7 +295,7 @@ static NSString * reuseID = @"reuseID1";
 
 - (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     if (error) {
-#warning notice!!!保存视频文件出错
+#warning notice!!! might be errors  after picked video,expect handler
         NSLog(@"error:%@",[error localizedDescription]);
     }else{
         NSLog(@"ok!filePath:%@",videoPath);
@@ -311,7 +304,12 @@ static NSString * reuseID = @"reuseID1";
 
 #pragma mark - Other 
 
-
+/** 更新表格的内容*/
+-(void)updateTableView{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
 
 
 /**

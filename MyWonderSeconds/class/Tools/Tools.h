@@ -21,7 +21,6 @@
 +(NSString *)timeFormedStringWithSecond:(NSInteger)seconds;
 
 /** 传入文件的父路径，文件的名字，创建路径，并返回文件路径*/
-
 +(NSString *)getSavePathWithFileName:(NSString *)imgName ofParentPath:(NSString *)parentPath;
 
 /** 按透明度生成随机颜色*/

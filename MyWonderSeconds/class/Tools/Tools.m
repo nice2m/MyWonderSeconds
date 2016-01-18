@@ -10,7 +10,6 @@
 
 @interface Tools()
 
-
 @end
 
 @implementation Tools
@@ -47,16 +46,14 @@ static NSString * documentPath;
 +(NSString *)getSavePathWithFileName:(NSString *)imgName ofParentPath:(NSString *)parentPath{
     NSString * finalStr = nil;
     if (parentPath.length != 0) {
-        finalStr = [MWS_DOCUMENT_DIRECTORY stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@/%@",parentPath,imgName]];
+        finalStr = [MWS_DOCUMENT_DIRECTORY stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",parentPath,imgName]];
     }else{
-        finalStr = [MWS_DOCUMENT_DIRECTORY stringByAppendingString:imgName];
+        finalStr = [MWS_DOCUMENT_DIRECTORY stringByAppendingPathComponent:imgName];
     }
     NSFileManager * manager = [NSFileManager defaultManager];
     [manager createDirectoryAtPath:[finalStr stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:nil];
     return finalStr;
-    
 }
-
 
 
 /*---------------视图相关----------------*/
@@ -87,14 +84,15 @@ static NSString * documentPath;
         _manager = [PHImageManager defaultManager];
     }
     dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_queue_create("com.baidu.com", DISPATCH_QUEUE_CONCURRENT);
     //线程一：请求字典信息数据
-    dispatch_group_async(group, dispatch_get_global_queue(0, 0), ^{
+    dispatch_group_async(group, queue, ^{
 #warning error!!!may cause an error,might be Tool Class methods below
-        NSString * plistPath =[Tools getSavePathWithFileName:MWS_THUMBNAIL_PLIST_FILE_NAME ofParentPath:@"/LocalData/"];
+        NSString * plistPath =[Tools getSavePathWithFileName:MWS_THUMBNAIL_PLIST_FILE_NAME ofParentPath:@"LocalData"];
         NSMutableDictionary * rsDict = @{}.mutableCopy;
         NSMutableArray * tempArr = @[].mutableCopy;
         //获取缩略图,存入本地path
-        NSDate * latestDate ;
+        NSDate * latestDate = nil ;
         for (int i = 0 ; i < fetchResult.count; i ++) {
             NSMutableDictionary * tempDict = @{}.mutableCopy;
             PHAsset * asset = [fetchResult objectAtIndex:i];
@@ -106,9 +104,16 @@ static NSString * documentPath;
                 latestDate = asset.modificationDate;
             }
             tempDict[@"assetLocalIdentifier"] = asset.localIdentifier;
-            NSLog(@"assetLocalIdentifeier:%@",asset.localIdentifier);
-            tempDict[@"thumbNailPath"] = [MWS_LOCALDATA_DIRECTORY stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",[asset.localIdentifier stringByReplacingOccurrencesOfString:@"/" withString:MWS_REPLACED_STRING]]];
-            tempDict[@"duration"] = @(asset.duration);
+            //NSLog(@"assetLocalIdentifeier:%@",asset.localIdentifier);
+            NSString * tempStr = [MWS_LOCALDATA_DIRECTORY stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",[asset.localIdentifier stringByReplacingOccurrencesOfString:@"/" withString:MWS_REPLACED_STRING]]];
+            
+            tempDict[@"thumbNailPath"] = tempStr;
+            
+            NSLog(@"%s\ttempStr:\t%@",__func__,tempStr);
+            
+            //NSLog(@"%@",tempDict[@"thumbNailPath"]);
+            tempDict[@"duration"] = [self timeFormedStringWithSecond:(NSInteger)asset.duration];
+            //NSLog(@"duration:%f",asset.duration);
             //将属性信息加入数组中
             [tempArr addObject:tempDict];
         }
@@ -116,6 +121,7 @@ static NSString * documentPath;
         rsDict[@"thumbNailsImages"] = tempArr;
         //写入到本地plist 文件
 #warning notice!!! if plist file not create successfully expect handler
+        
         if([rsDict writeToFile:plistPath atomically:YES]){
             NSLog(@"本地plist文件写入成功！");
         }else{
@@ -124,12 +130,13 @@ static NSString * documentPath;
 
     });
     //线程二：请求图片数据保存到本地
-    dispatch_group_async(group, dispatch_get_global_queue(0, 0), ^{
+    dispatch_group_async(group, queue, ^{
         for (int i = 0;  i < fetchResult.count; i ++) {
             PHAsset * asset1 = [fetchResult objectAtIndex:i];
             //将缩略图写入本地
             //data 写入路径
-            NSString * imgDataPath = [self getSavePathWithFileName:[asset1.localIdentifier stringByReplacingOccurrencesOfString:@"/" withString:MWS_REPLACED_STRING] ofParentPath:@"LocalData"];
+            NSString * imgDataPath = [self getSavePathWithFileName:[asset1.localIdentifier stringByReplacingOccurrencesOfString:@"/" withString:MWS_REPLACED_STRING] ofParentPath:@"/LocalData"];
+            //NSLog(@"imgDataPath:%@",imgDataPath);
             //请求图片
             [_manager requestAVAssetForVideo:asset1 options:nil resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
                 AVAssetImageGenerator * generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
@@ -138,20 +145,18 @@ static NSString * documentPath;
                 CGImageRef imgRef = [generator copyCGImageAtTime:startTime actualTime:&actualTime error:nil];
                 //设置获取图片大小
                 generator.maximumSize = CGSizeMake(16,9);
-                
                 generator.appliesPreferredTrackTransform = YES;
                 //将图片转换为数据NSData
                 UIImage * img = [UIImage imageWithCGImage:imgRef];
+                //UIImage * img1 = UIGraphicsBeginImageContext(CGSizeMake(<#CGFloat width#>, <#CGFloat height#>))
+                
                 NSData * data = UIImagePNGRepresentation(img);
                 if (data == nil) {
                     data = UIImageJPEGRepresentation(img, 1.0);
                 }
                 //将data 写入为文件到指定地址
-                
                 if([data writeToFile:imgDataPath atomically:YES]){
                     NSLog(@"写入本地缩略图成功！");
-                    //thumbnailsCounter +=1;
-                    //NSLog(@"thumnailsCounter:%ld",thumbnailsCounter);
                 }else{
 #warning notice!!! single thumbNail writes error expect a handler
                     NSLog(@"缩略图片写入本地有问题!");
@@ -162,9 +167,11 @@ static NSString * documentPath;
         }
     });
     //线程三：通知线程
-    dispatch_group_notify(group, dispatch_get_global_queue(0, 0), ^{
+    dispatch_group_notify(group, queue, ^{
 #warning notice!!! all data loaded
         NSLog(@"所有数据加载完成！");
+        [Tools postNotificationWithName:MWS_NOTIFICATION_FETCH_THUMBNAILS_DONE object:nil userInfo:nil];
+        
     });
 }
 
@@ -172,7 +179,6 @@ static NSString * documentPath;
 +(void)observeNotificationWithObserver:(id)observer selector:(SEL)action name:(NSString *)name object:(id)object{
     [[NSNotificationCenter defaultCenter]addObserver:observer selector:action name:name object:object];
 }
-
 +(void)postNotificationWithName:(NSString *)name object:(id)obj userInfo:(NSDictionary *)info{
     [[NSNotificationCenter defaultCenter]postNotificationName:name object:obj userInfo:info];
 }
