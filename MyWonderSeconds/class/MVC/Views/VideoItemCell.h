@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "VideoItemModel.h"
+//#import "VideoItemModel.h"
+#import "ThumbnailsModel.h"
 
 @interface VideoItemCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *thumbNailImageView;
@@ -15,6 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
 
-@property(nonatomic,strong)VideoItemModel * model;
+@property(nonatomic,strong)ThumbnailsModel * model;
 
 @end

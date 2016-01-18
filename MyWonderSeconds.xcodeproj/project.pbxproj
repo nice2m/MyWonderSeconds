@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56D31CFD1C4A97D7009C5368 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D31CFC1C4A97D7009C5368 /* FileManager.m */; };
 		BC32F53C1C49E03C00373AFC /* ThumbnailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32F53B1C49E03C00373AFC /* ThumbnailsModel.m */; };
 		BC5CDC811C3F5C59009AC07F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5CDC791C3F5C59009AC07F /* HomeViewController.m */; };
 		BC5CDC821C3F5C59009AC07F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5CDC7B1C3F5C59009AC07F /* RootViewController.m */; };
@@ -47,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		32E4D09F3994EC351AAC9C17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		56D31CFB1C4A97D7009C5368 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		56D31CFC1C4A97D7009C5368 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		8C412B302C2BF65F87D7E342 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2E4866F9466E05C4CCA87D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BC32F53A1C49E03C00373AFC /* ThumbnailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailsModel.h; sourceTree = "<group>"; };
@@ -311,6 +314,8 @@
 		BCED8C601C4797AF000060FB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				56D31CFB1C4A97D7009C5368 /* FileManager.h */,
+				56D31CFC1C4A97D7009C5368 /* FileManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -530,6 +535,7 @@
 				BC5CDC811C3F5C59009AC07F /* HomeViewController.m in Sources */,
 				BCED8C631C479E20000060FB /* VideoItemModel.m in Sources */,
 				BC5CDC831C3F5C59009AC07F /* SettingViewController.m in Sources */,
+				56D31CFD1C4A97D7009C5368 /* FileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

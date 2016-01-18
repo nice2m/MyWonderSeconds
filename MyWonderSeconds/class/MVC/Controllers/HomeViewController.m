@@ -16,10 +16,9 @@
 #import "SettingViewController.h"
 #import "UIBarButtonItem+Utils.h"
 #import <RESideMenu.h>
-#import "VideoItemModel.h"
+//#import "VideoItemModel.h"
 #import "VideoItemCell.h"
-
-
+#import "ThumbnailsModel.h"
 //#import ""
 
 @interface HomeViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -37,21 +36,17 @@
 
 /** =================数据数组*/
 //视频模型数组
-@property(nonatomic,strong)NSMutableArray * videoModels;
+//@property(nonatomic,strong)NSMutableArray * videoModels;
 //视频缩略图数组
 @property(nonatomic,strong)NSMutableArray * videoThumbNails;
-
-@property(nonatomic,assign)NSInteger tempCount;
+//@property(nonatomic,assign)NSInteger tempCount;
 
 /** ==================图片库相关*/
 @property(nonatomic,strong)PHPhotoLibrary * libraryManager;
 @property(nonatomic,strong)PHFetchResult * fetchResult;
 @property(nonatomic,strong)PHImageManager * imgManager;
 
-
-
 @end
-
 
 static NSString * reuseID = @"reuseID1";
 
@@ -70,7 +65,7 @@ static NSString * reuseID = @"reuseID1";
             _imagePicker.mediaTypes = @[(NSString *)kUTTypeMovie];
             _imagePicker.videoQuality = UIImagePickerControllerQualityTypeHigh;
         }else{
-#warning notice!! expect While no access permission handler
+#warning notice!!! expect While no access permission handler
             NSLog(@"摄像头不可用！");
             return nil;
         }
@@ -95,13 +90,13 @@ static NSString * reuseID = @"reuseID1";
     return _cameraImageView;
 }
 
-
--(NSMutableArray *)videoModels{
-    if (_videoModels == nil) {
-        _videoModels = [NSMutableArray array];
-    }
-    return _videoModels;
-}
+//
+//-(NSMutableArray *)videoModels{
+//    if (_videoModels == nil) {
+//        _videoModels = [NSMutableArray array];
+//    }
+//    return _videoModels;
+//}
 
 -(NSMutableArray *)videoThumbNails{
     if (_videoThumbNails == nil ) {
@@ -126,7 +121,9 @@ static NSString * reuseID = @"reuseID1";
 
 -(PHFetchResult *)fetchResult{
     if (_fetchResult == nil) {
-        _fetchResult = [[PHFetchResult alloc]init];
+        PHFetchOptions * options =[PHFetchOptions new];
+        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+        _fetchResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeVideo options:options];
     }
     return _fetchResult;
 }
@@ -177,7 +174,7 @@ static NSString * reuseID = @"reuseID1";
     // Do any additional setup after loading the view.
     
     //请求权限！
-    [self requestPermission];
+    //[self requestPermission];
     //创建UI
     [self createUI];
     //获取数据
@@ -195,32 +192,16 @@ static NSString * reuseID = @"reuseID1";
     //弱引用
     __weak typeof(self) weakSelf = self;
     
-    PHFetchOptions * fetchOptions = [PHFetchOptions new];
-    fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-    weakSelf.fetchResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeVideo options:fetchOptions];
-    //开始监听缩略图生成
-    [Tools observeNotificationWithObserver:weakSelf selector:@selector(thumbNailImagesReady) name:MWS_NOTIFICATION_FETCH_THUMBNAILS_DONE object:nil];
-    //根据PHFetchResults 生成缩略图存入本地
+    //根据PHFetchResults 生成缩略图存入本地,缩略图集合plist 文件
+    NSDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",MWS_LOCALDATA_DIRECTORY,MWS_THUMBNAIL_PLIST_FILE_NAME]];
+    NSArray * arr = dict[@"thumbNailsImages"];
+    NSLog(@"arr:%@",arr);
     
-    [Tools generateDataWithPHFetchResult:weakSelf.fetchResult];
-    
-    
-    
-    
-    //获取视频图像数据，创建模型
-    for (int i = 0 ; i < weakSelf.fetchResult.count; i ++) {
-        PHAsset * asset = [weakSelf.fetchResult objectAtIndex:i];
-        VideoItemModel * model = [VideoItemModel new];
-        model.duration = [Tools timeFormedStringWithSecond:(NSInteger)asset.duration];
-        model.localIdentifier = asset.localIdentifier;
-        
-        [weakSelf.videoModels addObject:model];
-        //获取缩略图
-        [Tools thumbnailImageWithPhasset:asset targetArray:weakSelf.videoThumbNails andTotal:weakSelf.fetchResult.count];
-        //weakSelf.tempCount = [weakSelf.videoModels count];
-    }
-    NSLog(@"共：%ld 个视频文件",(unsigned long)self.videoModels.count);
-    
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        [Tools generateDataWithPHFetchResult:weakSelf.fetchResult];
+//        //从本地plist 文件读取模型，创建self.tablveView 的数据
+//        
+//    });
     //回到主视图刷新UI
     dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf.tableView reloadData];
@@ -228,21 +209,21 @@ static NSString * reuseID = @"reuseID1";
 }
 
 #pragma mark - selector
-
-//请求权限
-/** 请求权限*/
--(void)requestPermission{
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        if (status == PHAuthorizationStatusAuthorized || status == PHAuthorizationStatusNotDetermined) {
-            _isAccessAvalabel = YES;
-        }else{
-#warning notice!!! user's access to photo denied! expect a handler!
-            UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请在[设置]->[隐私]中，开启相册权限" preferredStyle:UIAlertControllerStyleAlert];
-            [self presentViewController:alertController animated:YES completion:nil];
-            NSLog(@"用户拒绝权限！");
-        }
-    }];
-}
+//
+////请求权限
+///** 请求权限*/
+//-(void)requestPermission{
+//    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+//        if (status == PHAuthorizationStatusAuthorized || status == PHAuthorizationStatusNotDetermined) {
+//            _isAccessAvalabel = YES;
+//        }else{
+//#warning notice!!! user's access to photo denied! expect a handler!
+//            UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请在[设置]->[隐私]中，开启相册权限" preferredStyle:UIAlertControllerStyleAlert];
+//            [self presentViewController:alertController animated:YES completion:nil];
+//            NSLog(@"用户拒绝权限！");
+//        }
+//    }];
+//}
 
 
 //弹出左侧菜单
@@ -278,17 +259,12 @@ static NSString * reuseID = @"reuseID1";
         self.tableView.frame = CGRectZero;
         return 0;
     }
-    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     VideoItemCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseID];
-    if (self.videoModels.count > 0) {
-        cell.model = self.videoModels[indexPath.row];
-    }
-    if (self.videoThumbNails.count == self.fetchResult.count) {
-        cell.thumbNailImageView.image = self.videoThumbNails[indexPath.row];
+    if (self.videoThumbNails.count > 0) {
+        cell.model = self.videoThumbNails[indexPath.row];
     }
     return cell;
 }
@@ -308,7 +284,7 @@ static NSString * reuseID = @"reuseID1";
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     NSLog(@"取消");
-    [_imagePicker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 //摄像完成时候回调
@@ -321,7 +297,7 @@ static NSString * reuseID = @"reuseID1";
             UISaveVideoAtPathToSavedPhotosAlbum(filePath, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
         }
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{

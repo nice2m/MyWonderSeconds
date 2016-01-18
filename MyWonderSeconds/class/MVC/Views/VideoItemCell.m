@@ -21,15 +21,12 @@
     // Configure the view for the selected state
 }
 
--(void)setModel:(VideoItemModel *)model{
+-(void)setModel:(ThumbnailsModel *)model{
     _model = model;
     self.detailLabel.hidden = YES;
     self.titleLabel.text = @"编辑并上传";
     self.durationLabel.text = _model.duration;
-    if (_model.editingNum > 0) {
-        self.detailLabel.hidden = NO;
-        self.detailLabel.text = [NSString stringWithFormat:@"共包含\t%d个视频文件",_model.editingNum];
-    }
+    self.thumbNailImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:_model.thumbNailPath]];
 }
 
 

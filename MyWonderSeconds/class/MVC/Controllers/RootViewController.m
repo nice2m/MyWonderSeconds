@@ -35,8 +35,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //加载fileManager
+    FileManager * fileManager = [FileManager sharedManager];
+    //是否需要创建Plist 文件
+    if ([fileManager shouldCreatePlist]) {
+        //不存在，然后，创建plist 文件
+        [fileManager updatePlist];
+    }else{
+        //已经存在，是否更新
+        if ([fileManager shouldUpdatePlist]) {
+            //更新
+            [fileManager updatePlist];
+        }
+    }
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
