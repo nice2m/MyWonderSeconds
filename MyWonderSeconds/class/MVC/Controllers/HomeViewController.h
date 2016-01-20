@@ -10,5 +10,7 @@
 #import "BaseViewController.h"
 
 @interface HomeViewController : BaseViewController
+
 -(void)updateTableView;
+
 @end

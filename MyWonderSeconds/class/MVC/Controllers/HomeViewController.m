@@ -19,7 +19,7 @@
 //#import "VideoItemModel.h"
 #import "VideoItemCell.h"
 #import "ThumbnailsModel.h"
-//#import ""
+#import "ProcessViewController.h"
 
 @interface HomeViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -42,9 +42,9 @@
 //@property(nonatomic,assign)NSInteger tempCount;
 
 /** ==================图片库相关*/
-@property(nonatomic,strong)PHPhotoLibrary * libraryManager;
+//@property(nonatomic,strong)PHPhotoLibrary * libraryManager;
 @property(nonatomic,strong)PHFetchResult * fetchResult;
-@property(nonatomic,strong)PHImageManager * imgManager;
+//@property(nonatomic,strong)PHImageManager * imgManager;
 
 @end
 
@@ -105,19 +105,19 @@ static NSString * reuseID = @"reuseID1";
     return _videoThumbNails;
 }
 
--(PHPhotoLibrary *)libraryManager{
-    if (_libraryManager == nil) {
-        _libraryManager = [PHPhotoLibrary sharedPhotoLibrary];
-    }
-    return _libraryManager;
-}
+//-(PHPhotoLibrary *)libraryManager{
+//    if (_libraryManager == nil) {
+//        _libraryManager = [PHPhotoLibrary sharedPhotoLibrary];
+//    }
+//    return _libraryManager;
+//}
 
--(PHImageManager *)imgManager{
-    if (_imgManager == nil) {
-        _imgManager = [PHImageManager defaultManager];
-    }
-    return _imgManager;
-}
+//-(PHImageManager *)imgManager{
+//    if (_imgManager == nil) {
+//        _imgManager = [PHImageManager defaultManager];
+//    }
+//    return _imgManager;
+//}
 
 -(PHFetchResult *)fetchResult{
     if (_fetchResult == nil) {
@@ -148,6 +148,11 @@ static NSString * reuseID = @"reuseID1";
         make.right.left.equalTo(self.cameraImageView);
         make.bottom.equalTo(self.view);
     }];
+    
+    //创建UI
+    [self createUI];
+    //获取数据
+    [self getDataAndFill];
 }
 
 //创建UI
@@ -174,10 +179,6 @@ static NSString * reuseID = @"reuseID1";
     // Do any additional setup after loading the view.
     //请求权限！
     //[self requestPermission];
-    //创建UI
-    [self createUI];
-    //获取数据
-    [self getDataAndFill];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -196,9 +197,10 @@ static NSString * reuseID = @"reuseID1";
     for (NSDictionary * dict  in arr) {
         ThumbnailsModel * model = [ThumbnailsModel new];
         [model setValuesForKeysWithDictionary:dict];
+        
         [self.videoThumbNails addObject:model];
     }
-    NSLog(@"dataArr:%@",self.videoThumbNails);
+    //NSLog(@"dataArr:%@",self.videoThumbNails);
     [self.tableView reloadData];
 }
 
@@ -246,19 +248,27 @@ static NSString * reuseID = @"reuseID1";
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
     if (self.fetchResult.count > 0) {
+        
         return self.fetchResult.count;
+        
     }else{
+        
         self.tableView.frame = CGRectZero;
         return 0;
     }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    VideoItemCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseID];
+    
+    VideoItemCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseID forIndexPath:indexPath];
     if (self.videoThumbNails.count > 0) {
         cell.model = self.videoThumbNails[indexPath.row];
+    }else{
+        NSLog(@"%s\tself.videoThumbNails:%ld",__func__,self.videoThumbNails.count);
     }
+    
     return cell;
 }
 
@@ -267,13 +277,15 @@ static NSString * reuseID = @"reuseID1";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ProcessViewController * pVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ProcessViewController"];
+    [self.navigationController pushViewController:pVC animated:YES];
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
 }
 
-#pragma mark - UIImagePickerController 代理方法
+#pragma mark - UIImag ePickerController 代理方法
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     NSLog(@"取消");
@@ -301,29 +313,23 @@ static NSString * reuseID = @"reuseID1";
         NSLog(@"ok!filePath:%@",videoPath);
     }
 }
-
 #pragma mark - Other 
 
 /** 更新表格的内容*/
 -(void)updateTableView{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
+    //[self.tableView reloadData];
+    [self getDataAndFill];
 }
-
-
 /**
  //解决图片的方向问题，
  - (UIImage *)normalizedImage {
  if (self.imageOrientation == UIImageOrientationUp) return self;
- 
  UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
  [self drawInRect:(CGRect){0, 0, self.size}];
  UIImage *normalizedImage = UIGraphicsGetImageFromCurrentImageContext();
  UIGraphicsEndImageContext();
  return normalizedImage;
  }
- 
  */
 
 @end

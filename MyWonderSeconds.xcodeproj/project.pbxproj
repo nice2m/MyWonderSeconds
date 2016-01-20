@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		56D31CFD1C4A97D7009C5368 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D31CFC1C4A97D7009C5368 /* FileManager.m */; };
 		BC32F53C1C49E03C00373AFC /* ThumbnailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32F53B1C49E03C00373AFC /* ThumbnailsModel.m */; };
+		BC468F441C4F722F00A5931F /* SelectMusicBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = BC468F431C4F722F00A5931F /* SelectMusicBtn.m */; };
 		BC5CDC811C3F5C59009AC07F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5CDC791C3F5C59009AC07F /* HomeViewController.m */; };
 		BC5CDC821C3F5C59009AC07F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5CDC7B1C3F5C59009AC07F /* RootViewController.m */; };
 		BC5CDC831C3F5C59009AC07F /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5CDC7D1C3F5C59009AC07F /* SettingViewController.m */; };
@@ -22,6 +23,7 @@
 		BC6FC34A1C3F43F000AD7D26 /* MyWonderSecondsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6FC3491C3F43F000AD7D26 /* MyWonderSecondsTests.m */; };
 		BC6FC3551C3F43F200AD7D26 /* MyWonderSecondsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6FC3541C3F43F200AD7D26 /* MyWonderSecondsUITests.m */; };
 		BC6FC3841C3F44F100AD7D26 /* UIBarButtonItem+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6FC3691C3F44F100AD7D26 /* UIBarButtonItem+Utils.m */; };
+		BCA8D0B31C4D156C0041F9CF /* ProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA8D0B21C4D156C0041F9CF /* ProcessViewController.m */; };
 		BCED8C631C479E20000060FB /* VideoItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCED8C621C479E20000060FB /* VideoItemModel.m */; };
 		BCED8C671C47C55C000060FB /* VideoItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCED8C651C47C55C000060FB /* VideoItemCell.m */; };
 		BCED8C681C47C55C000060FB /* VideoItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCED8C661C47C55C000060FB /* VideoItemCell.xib */; };
@@ -54,6 +56,8 @@
 		9B2E4866F9466E05C4CCA87D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BC32F53A1C49E03C00373AFC /* ThumbnailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailsModel.h; sourceTree = "<group>"; };
 		BC32F53B1C49E03C00373AFC /* ThumbnailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailsModel.m; sourceTree = "<group>"; };
+		BC468F421C4F722F00A5931F /* SelectMusicBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMusicBtn.h; sourceTree = "<group>"; };
+		BC468F431C4F722F00A5931F /* SelectMusicBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMusicBtn.m; sourceTree = "<group>"; };
 		BC5CDC6F1C3F5BAD009AC07F /* WMS-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WMS-PrefixHeader.pch"; sourceTree = "<group>"; };
 		BC5CDC781C3F5C59009AC07F /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		BC5CDC791C3F5C59009AC07F /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 		BC6FC3561C3F43F200AD7D26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC6FC3681C3F44F100AD7D26 /* UIBarButtonItem+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Utils.h"; sourceTree = "<group>"; };
 		BC6FC3691C3F44F100AD7D26 /* UIBarButtonItem+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Utils.m"; sourceTree = "<group>"; };
+		BCA8D0B11C4D156C0041F9CF /* ProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessViewController.h; sourceTree = "<group>"; };
+		BCA8D0B21C4D156C0041F9CF /* ProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessViewController.m; sourceTree = "<group>"; };
 		BCED8C611C479E20000060FB /* VideoItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoItemModel.h; sourceTree = "<group>"; };
 		BCED8C621C479E20000060FB /* VideoItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoItemModel.m; sourceTree = "<group>"; };
 		BCED8C641C47C55C000060FB /* VideoItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoItemCell.h; sourceTree = "<group>"; };
@@ -177,6 +183,8 @@
 				BC5CDC7B1C3F5C59009AC07F /* RootViewController.m */,
 				BC5CDC7C1C3F5C59009AC07F /* SettingViewController.h */,
 				BC5CDC7D1C3F5C59009AC07F /* SettingViewController.m */,
+				BCA8D0B11C4D156C0041F9CF /* ProcessViewController.h */,
+				BCA8D0B21C4D156C0041F9CF /* ProcessViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -198,6 +206,8 @@
 				BCED8C641C47C55C000060FB /* VideoItemCell.h */,
 				BCED8C651C47C55C000060FB /* VideoItemCell.m */,
 				BCED8C661C47C55C000060FB /* VideoItemCell.xib */,
+				BC468F421C4F722F00A5931F /* SelectMusicBtn.h */,
+				BC468F431C4F722F00A5931F /* SelectMusicBtn.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -531,8 +541,10 @@
 				BC6FC33A1C3F43E700AD7D26 /* MyWonderSeconds.xcdatamodeld in Sources */,
 				BC6FC3311C3F43E500AD7D26 /* AppDelegate.m in Sources */,
 				BC6FC32E1C3F43E400AD7D26 /* main.m in Sources */,
+				BC468F441C4F722F00A5931F /* SelectMusicBtn.m in Sources */,
 				BCED8C6C1C47D139000060FB /* Tools.m in Sources */,
 				BC5CDC811C3F5C59009AC07F /* HomeViewController.m in Sources */,
+				BCA8D0B31C4D156C0041F9CF /* ProcessViewController.m in Sources */,
 				BCED8C631C479E20000060FB /* VideoItemModel.m in Sources */,
 				BC5CDC831C3F5C59009AC07F /* SettingViewController.m in Sources */,
 				56D31CFD1C4A97D7009C5368 /* FileManager.m in Sources */,

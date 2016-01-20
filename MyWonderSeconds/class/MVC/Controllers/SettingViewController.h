@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingViewController : UITableViewController
+@interface SettingViewController : UIViewController
+
+/** 设置view偏移量*/
+@property(nonatomic,assign)CGFloat contentWidth;
 
 @end

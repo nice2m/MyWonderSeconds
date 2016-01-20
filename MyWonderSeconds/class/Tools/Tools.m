@@ -65,7 +65,7 @@ static NSString * documentPath;
 }
 /** 将传入的正方形view 且为圆形 */
 +(void)clipsBorderToCircle:(UIView *)view{
-    CGFloat radius = CGRectGetWidth(view.frame) / 2;
+    CGFloat radius = CGRectGetWidth(view.frame) / 2.f;
     view.clipsToBounds = YES;
     view.layer.cornerRadius = radius;
 }
@@ -92,6 +92,7 @@ static NSString * documentPath;
         NSMutableDictionary * rsDict = @{}.mutableCopy;
         NSMutableArray * tempArr = @[].mutableCopy;
         //获取缩略图,存入本地path
+        
         NSDate * latestDate = nil ;
         for (int i = 0 ; i < fetchResult.count; i ++) {
             NSMutableDictionary * tempDict = @{}.mutableCopy;
@@ -130,6 +131,9 @@ static NSString * documentPath;
 
     });
     //线程二：请求图片数据保存到本地
+    //记录图片的存取情况
+    __block NSInteger tempCount = 0;
+    
     dispatch_group_async(group, queue, ^{
         for (int i = 0;  i < fetchResult.count; i ++) {
             PHAsset * asset1 = [fetchResult objectAtIndex:i];
@@ -148,8 +152,6 @@ static NSString * documentPath;
                 generator.appliesPreferredTrackTransform = YES;
                 //将图片转换为数据NSData
                 UIImage * img = [UIImage imageWithCGImage:imgRef];
-                //UIImage * img1 = UIGraphicsBeginImageContext(CGSizeMake(<#CGFloat width#>, <#CGFloat height#>))
-                
                 NSData * data = UIImagePNGRepresentation(img);
                 if (data == nil) {
                     data = UIImageJPEGRepresentation(img, 1.0);
@@ -157,6 +159,12 @@ static NSString * documentPath;
                 //将data 写入为文件到指定地址
                 if([data writeToFile:imgDataPath atomically:YES]){
                     NSLog(@"写入本地缩略图成功！");
+                    tempCount +=1;
+                    //加载完成，发送通知
+                    if (tempCount == fetchResult.count) {
+                        NSLog(@"所有数据加载完成！");
+                        [Tools postNotificationWithName:MWS_NOTIFICATION_FETCH_THUMBNAILS_DONE object:nil userInfo:nil];
+                    }
                 }else{
 #warning notice!!! single thumbNail writes error expect a handler
                     NSLog(@"缩略图片写入本地有问题!");
@@ -165,13 +173,6 @@ static NSString * documentPath;
                 CGImageRelease(imgRef);
             }];
         }
-    });
-    //线程三：通知线程
-    dispatch_group_notify(group, queue, ^{
-#warning notice!!! all data loaded
-        NSLog(@"所有数据加载完成！");
-        [Tools postNotificationWithName:MWS_NOTIFICATION_FETCH_THUMBNAILS_DONE object:nil userInfo:nil];
-        
     });
 }
 

@@ -31,11 +31,13 @@
     UINavigationController * navi = [[UINavigationController alloc]initWithRootViewController:_homeVC];
     self.contentViewController = navi;
     self.leftMenuViewController = settingVC;
-    self.contentViewInPortraitOffsetCenterX = 80;
+    settingVC.contentWidth = (kSCREEN_SIZE.width / 2.f + 80.f);
     
-    //self.scaleBackgroundImageView = NO;
-    //self.scaleContentView = NO;
-    //self.scaleMenuView = NO;
+    self.contentViewInPortraitOffsetCenterX = 80.f;
+    
+    self.scaleBackgroundImageView = NO;
+    self.scaleContentView = NO;
+    self.scaleMenuView = NO;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,7 +45,8 @@
     //加载fileManager
     FileManager * fileManager = [FileManager sharedManager];
     //添加监听通知
-    [Tools observeNotificationWithObserver:self selector:@selector(updateTableView) name:MWS_NOTIFICATION_FETCH_THUMBNAILS_DONE object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateTableView) name:MWS_NOTIFICATION_FETCH_THUMBNAILS_DONE object:nil];
+    NSLog(@"开始监听通知！%s",__func__);
     //NSLog(@"%s\t%@",__func__,MWS_LOCALDATA_DIRECTORY);
     //是否需要创建Plist 文件
     if ([fileManager shouldCreatePlist]) {
@@ -63,9 +66,19 @@
 }
 
 #pragma mark - selector
+
 -(void)updateTableView{
-    NSLog(@"hello world!");
+    //更新表格
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"%s,收到通知，更新表格",__func__);
+        [_homeVC updateTableView];
+    });
 }
 
+//销毁通知
+-(void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 
 @end

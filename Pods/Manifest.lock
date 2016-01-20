@@ -22,6 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - IQKeyboardManager (3.3.4)
   - Masonry (0.6.4)
+  - MLSelectPhoto (1.2.1)
   - RESideMenu (4.0.7)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.6.3)
   - IQKeyboardManager
   - Masonry
+  - MLSelectPhoto
   - RESideMenu
   - SDWebImage
 
@@ -38,6 +40,7 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   IQKeyboardManager: ac803e61e5b50efae6b3aeedd95a02c7c7d3b2b3
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  MLSelectPhoto: 27a6e6c77d1efcd718413e8c4093b2769a8f1f3e
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
 
