@@ -10,6 +10,10 @@
 		56D31CFD1C4A97D7009C5368 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D31CFC1C4A97D7009C5368 /* FileManager.m */; };
 		BC32F53C1C49E03C00373AFC /* ThumbnailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32F53B1C49E03C00373AFC /* ThumbnailsModel.m */; };
 		BC468F441C4F722F00A5931F /* SelectMusicBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = BC468F431C4F722F00A5931F /* SelectMusicBtn.m */; };
+		BC468F5A1C4FC5C900A5931F /* SAResizibleBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = BC468F531C4FC5C900A5931F /* SAResizibleBubble.m */; };
+		BC468F5B1C4FC5C900A5931F /* SASliderLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = BC468F551C4FC5C900A5931F /* SASliderLeft.m */; };
+		BC468F5C1C4FC5C900A5931F /* SASliderRight.m in Sources */ = {isa = PBXBuildFile; fileRef = BC468F571C4FC5C900A5931F /* SASliderRight.m */; };
+		BC468F5D1C4FC5C900A5931F /* SAVideoRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = BC468F591C4FC5C900A5931F /* SAVideoRangeSlider.m */; };
 		BC5CDC811C3F5C59009AC07F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5CDC791C3F5C59009AC07F /* HomeViewController.m */; };
 		BC5CDC821C3F5C59009AC07F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5CDC7B1C3F5C59009AC07F /* RootViewController.m */; };
 		BC5CDC831C3F5C59009AC07F /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5CDC7D1C3F5C59009AC07F /* SettingViewController.m */; };
@@ -58,6 +62,14 @@
 		BC32F53B1C49E03C00373AFC /* ThumbnailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailsModel.m; sourceTree = "<group>"; };
 		BC468F421C4F722F00A5931F /* SelectMusicBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMusicBtn.h; sourceTree = "<group>"; };
 		BC468F431C4F722F00A5931F /* SelectMusicBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMusicBtn.m; sourceTree = "<group>"; };
+		BC468F521C4FC5C900A5931F /* SAResizibleBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAResizibleBubble.h; sourceTree = "<group>"; };
+		BC468F531C4FC5C900A5931F /* SAResizibleBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAResizibleBubble.m; sourceTree = "<group>"; };
+		BC468F541C4FC5C900A5931F /* SASliderLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASliderLeft.h; sourceTree = "<group>"; };
+		BC468F551C4FC5C900A5931F /* SASliderLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASliderLeft.m; sourceTree = "<group>"; };
+		BC468F561C4FC5C900A5931F /* SASliderRight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASliderRight.h; sourceTree = "<group>"; };
+		BC468F571C4FC5C900A5931F /* SASliderRight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASliderRight.m; sourceTree = "<group>"; };
+		BC468F581C4FC5C900A5931F /* SAVideoRangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVideoRangeSlider.h; sourceTree = "<group>"; };
+		BC468F591C4FC5C900A5931F /* SAVideoRangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVideoRangeSlider.m; sourceTree = "<group>"; };
 		BC5CDC6F1C3F5BAD009AC07F /* WMS-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WMS-PrefixHeader.pch"; sourceTree = "<group>"; };
 		BC5CDC781C3F5C59009AC07F /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		BC5CDC791C3F5C59009AC07F /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
@@ -127,6 +139,29 @@
 				8C412B302C2BF65F87D7E342 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC468F501C4FC5C900A5931F /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				BC468F511C4FC5C900A5931F /* SAVideoRangeSlider */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		BC468F511C4FC5C900A5931F /* SAVideoRangeSlider */ = {
+			isa = PBXGroup;
+			children = (
+				BC468F521C4FC5C900A5931F /* SAResizibleBubble.h */,
+				BC468F531C4FC5C900A5931F /* SAResizibleBubble.m */,
+				BC468F541C4FC5C900A5931F /* SASliderLeft.h */,
+				BC468F551C4FC5C900A5931F /* SASliderLeft.m */,
+				BC468F561C4FC5C900A5931F /* SASliderRight.h */,
+				BC468F571C4FC5C900A5931F /* SASliderRight.m */,
+				BC468F581C4FC5C900A5931F /* SAVideoRangeSlider.h */,
+				BC468F591C4FC5C900A5931F /* SAVideoRangeSlider.m */,
+			);
+			path = SAVideoRangeSlider;
 			sourceTree = "<group>";
 		};
 		BC5CDC701C3F5C59009AC07F /* MVC */ = {
@@ -237,6 +272,7 @@
 		BC6FC32B1C3F43E400AD7D26 /* MyWonderSeconds */ = {
 			isa = PBXGroup;
 			children = (
+				BC468F501C4FC5C900A5931F /* Vendor */,
 				BC6FC38A1C3F450800AD7D26 /* AppDelegate */,
 				BC6FC3891C3F44FE00AD7D26 /* InterfaceBuilder */,
 				BC6FC3661C3F44F100AD7D26 /* class */,
@@ -538,9 +574,13 @@
 				BCED8C671C47C55C000060FB /* VideoItemCell.m in Sources */,
 				BC5CDC821C3F5C59009AC07F /* RootViewController.m in Sources */,
 				BC32F53C1C49E03C00373AFC /* ThumbnailsModel.m in Sources */,
+				BC468F5B1C4FC5C900A5931F /* SASliderLeft.m in Sources */,
 				BC6FC33A1C3F43E700AD7D26 /* MyWonderSeconds.xcdatamodeld in Sources */,
 				BC6FC3311C3F43E500AD7D26 /* AppDelegate.m in Sources */,
+				BC468F5A1C4FC5C900A5931F /* SAResizibleBubble.m in Sources */,
+				BC468F5C1C4FC5C900A5931F /* SASliderRight.m in Sources */,
 				BC6FC32E1C3F43E400AD7D26 /* main.m in Sources */,
+				BC468F5D1C4FC5C900A5931F /* SAVideoRangeSlider.m in Sources */,
 				BC468F441C4F722F00A5931F /* SelectMusicBtn.m in Sources */,
 				BCED8C6C1C47D139000060FB /* Tools.m in Sources */,
 				BC5CDC811C3F5C59009AC07F /* HomeViewController.m in Sources */,

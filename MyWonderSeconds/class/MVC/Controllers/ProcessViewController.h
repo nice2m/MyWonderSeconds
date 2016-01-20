@@ -10,4 +10,6 @@
 
 @interface ProcessViewController : BaseViewController
 
+@property(nonatomic,assign)NSInteger numberOfVideo;
+
 @end

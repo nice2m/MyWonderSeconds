@@ -148,11 +148,6 @@ static NSString * reuseID = @"reuseID1";
         make.right.left.equalTo(self.cameraImageView);
         make.bottom.equalTo(self.view);
     }];
-    
-    //创建UI
-    [self createUI];
-    //获取数据
-    [self getDataAndFill];
 }
 
 //创建UI
@@ -179,6 +174,10 @@ static NSString * reuseID = @"reuseID1";
     // Do any additional setup after loading the view.
     //请求权限！
     //[self requestPermission];
+    //创建UI
+    [self createUI];
+    //获取数据
+    [self getDataAndFill];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -248,7 +247,6 @@ static NSString * reuseID = @"reuseID1";
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
     if (self.fetchResult.count > 0) {
         
         return self.fetchResult.count;
@@ -259,7 +257,6 @@ static NSString * reuseID = @"reuseID1";
         return 0;
     }
 }
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     VideoItemCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseID forIndexPath:indexPath];
@@ -268,7 +265,6 @@ static NSString * reuseID = @"reuseID1";
     }else{
         NSLog(@"%s\tself.videoThumbNails:%ld",__func__,self.videoThumbNails.count);
     }
-    
     return cell;
 }
 
@@ -277,25 +273,27 @@ static NSString * reuseID = @"reuseID1";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     ProcessViewController * pVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ProcessViewController"];
+    //转换类型
+    NSNumber * num = [NSNumber numberWithUnsignedInteger:self.fetchResult.count];
+    pVC.numberOfVideo = [num integerValue];
     [self.navigationController pushViewController:pVC animated:YES];
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
 }
-
 #pragma mark - UIImag ePickerController 代理方法
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     NSLog(@"取消");
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
-
 //摄像完成时候回调
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     NSString * mediaTypeString = [info objectForKey:UIImagePickerControllerMediaType];
-    if ( [mediaTypeString isEqualToString:(NSString *) kUTTypeMovie]) {
+    if ([mediaTypeString isEqualToString:(NSString *) kUTTypeMovie]) {
         NSURL * url = [info objectForKey:UIImagePickerControllerMediaURL];
         NSString * filePath = [url path];
         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(filePath)) {
